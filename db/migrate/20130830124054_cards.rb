@@ -3,7 +3,7 @@ class Cards < ActiveRecord::Migration
     create_table :cards do |t|
       t.integer :deck_id
       t.string :defenition
-      t.string :term
+      t.string :termmy
       t.timestamps
     end
   end
