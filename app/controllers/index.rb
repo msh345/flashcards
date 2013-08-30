@@ -1,3 +1,5 @@
+require_relative 'user'
+
 get '/' do
   # Look in app/views/index.erb
   erb :index
