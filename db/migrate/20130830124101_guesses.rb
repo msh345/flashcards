@@ -1,8 +1,8 @@
 class Guesses < ActiveRecord::Migration
   def change
     create_table :guesses do |t|
-      t.belongs_to :card
-      t.belongs_to :round
+      t.integer :card_id
+      t.integer :round_id
       t.boolean :outcome
       t.timestamps
     end

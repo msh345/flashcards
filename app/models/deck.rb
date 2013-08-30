@@ -1,3 +1,4 @@
 class Deck < ActiveRecord::Base
-  belongs_to :round# Remember to create a migration!
+  # belongs_to :rounds
+  # has_many :cards
 end

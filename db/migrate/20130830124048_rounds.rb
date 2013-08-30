@@ -1,7 +1,8 @@
 class Rounds < ActiveRecord::Migration
   def change
     create_table :rounds do |t|
-      t.belongs_to :user
+      t.integer :user_id
+      t.integer :deck_id
       t.timestamps
     end
   end
