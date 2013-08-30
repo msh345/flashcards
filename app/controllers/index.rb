@@ -13,8 +13,4 @@ get '/signup' do
   erb :signup
 end
 
-get '/new_game' do 
-  @subjects = Deck.all
-  
-  erb :new_game
-end
+

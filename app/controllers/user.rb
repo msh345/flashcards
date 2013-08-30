@@ -4,6 +4,7 @@
 # POST ================================
 
 post '/gamehome' do
+  @subjects = Deck.all
   #Sign Up Case
   if params["password_confirmation"]
     if params["password_confirmation"] == params[:new_user]["password"]
