@@ -10,10 +10,15 @@ end
 get '/round/:round_id/new_card' do
   #This method pulls a card at random from the round's deck
   @card = Round.find(params[:round_id]).deck.cards.sample.id.to_s
-  # Logic to verify card is ok
-
-  redirect "/round/#{params[:round_id]}/card/#{@card}" 
-
+  # Logic to verify if card has been played (check against Guesses Table)
+  while true
+    if puts Guess.where(:round_id => params[:round_id]).where(:card_id => params[:card_id]).empty?
+      redirect "/round/#{params[:round_id]}/card/#{@card}" 
+    else
+      puts 'copy'
+      @card = Round.find(params[:round_id]).deck.cards.sample.id.to_s
+    end
+  end
 end
 
 get '/round/:round_id/card/:card_id' do
@@ -23,8 +28,7 @@ get '/round/:round_id/card/:card_id' do
 end
 
 post '/round/:round_id/card/:card_id' do
-  puts params
-  #Verify Correct/Incorrent => Create Guess Table Entry
+  #Create Guess Table Entry
   answer = params["answer"].downcase
   round_id = params["round_id"]
   card_id = params["card_id"]
@@ -33,5 +37,5 @@ post '/round/:round_id/card/:card_id' do
   Guess.create(:round_id => round_id, :card_id => card_id, :outcome => answer == card_answer)
 
   #Get another card
-  redirect "/round/#{round.id}/new_card"  
+  redirect "/round/#{round_id}/new_card"  
 end
