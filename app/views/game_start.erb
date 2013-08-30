@@ -2,7 +2,7 @@
 
 <p>we have to show a card here<p>
 
-<form action="/response" method="POST">
+<form action= "/round/<%=@round.id%>/card/<%=@card.id%>" method="POST">
   <label for="answer">Your Answer</label>
   <input id="answer" type="text" name="answer"><br>
   <div id="id" name=<%=@card.id%>></div>
