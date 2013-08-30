@@ -8,8 +8,8 @@ post '/gamehome' do
   #Sign Up Case
   if params["password_confirmation"]
     puts true
-    if params["password_confirmation"] == params["password"]
-      #Create User
+    if params["password_confirmation"] == params["new_user[password]"]
+      puts User.create(params[:new_user])
     else
       #invalid signup
       @error = "Passwords Don't Match"
