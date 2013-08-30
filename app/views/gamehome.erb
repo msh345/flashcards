@@ -9,11 +9,11 @@
   <tbody class = "post">
     <% @subjects.each do |item| %>
       <tr>
-        <td><a href="/deck/<%= item.id%>/card"><%= item.subject%></a></td>
+        <td><a href="/deck/<%= item.id%>"><%= item.subject%></a></td>
       </tr>
     <% end %>
   </tbody>
 </TABLE>
 </div>
-
+<br>
 <a class ="userprofilelink" href="/user/:id/stats">User Profile</a>
