@@ -1,5 +1,11 @@
 # GET================================
-
+  get '/user/:id/stats' do
+    erb :userstats
+  end
+  get '/logout' do 
+    session.clear
+    redirect to '/'
+  end
 
 # POST ================================
 
@@ -23,6 +29,7 @@ post '/gamehome' do
     #Sign In Case
     puts @user = User.where(:username => params["username"], :password => params["password"]).first
     if !@user.nil?
+      session[:user_id] = @user.id
       erb :gamehome
     else
       #invalid signin

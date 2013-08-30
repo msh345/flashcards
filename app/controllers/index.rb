@@ -12,3 +12,8 @@ end
 get '/signup' do
   erb :signup
 end
+
+get '/home' do
+  @subjects = Deck.all
+  erb :gamehome
+end
