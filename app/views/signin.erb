@@ -1,5 +1,7 @@
 <h1>Sign In</h1>
 
+<div id="error_msg"><%= @error if @error %></div>
+<br>
 <form action="/gamehome" method="POST">
   <label for="username">User Name</label>
   <input id="username" type="text" name="username"><br>

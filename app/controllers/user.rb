@@ -4,12 +4,15 @@
 # POST ================================
 
 post '/gamehome' do
-  puts params
   #Sign Up Case
   if params["password_confirmation"]
-    puts true
-    if params["password_confirmation"] == params["password"]
-      #Create User
+    if params["password_confirmation"] == params[:new_user]["password"]
+      @user = User.create(params[:new_user])
+      #sessions
+      if @user != nil
+        session[:user_id] = @user.id
+      end
+      erb :gamehome
     else
       #invalid signup
       @error = "Passwords Don't Match"
@@ -17,6 +20,13 @@ post '/gamehome' do
     end
   else
     #Sign In Case
-    puts false
+    puts @user = User.where(:username => params["username"], :password => params["password"]).first
+    if !@user.nil?
+      erb :gamehome
+    else
+      #invalid signin
+      @error = "Invalid Username or Password"
+      erb :signin
+    end
   end
 end
