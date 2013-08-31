@@ -1,36 +1,29 @@
+<% last_round = current_user.guesses.order("updated_at DESC").first.round_id %>
+
 <div class="user_stat">
   <h1>Stats for <%=current_user.username%></h1>
-    <TABLE>
-    <thead>
-      <tr>
-        <th>Stats</th>
-      </tr>
-    </thead>
-    <tbody class = "stats">
-      <th># of correct guesses
-        <tr>
-          <td>test</td>
-        </tr>
-        <tr>
-          <td></td>
-        </tr>
-      </th>
-      <th># of wrong Guesses
-        <tr>
-          <td>test</td>
-        </tr>
-      </th>
-      <th>% of something
-        <tr>
-          <td>% of right</td>
-        </tr>
-        <tr>
-          <td>% of wrong</td>
-        </tr>
-      </th>
-    </tbody>
-  </TABLE>
-  </div>
+  <table>
+    <th>
+      <td>All Time</td>
+      <td>Last Game</td>
+    </th>
+    <tr>
+      <td># Right</td>
+      <td><%= current_user.guesses.where(:outcome => true).count %></td>
+      <td><%= Guess.where(:round_id => last_round).where(:outcome => true).count %></td>
+    </tr>
+    <tr>
+      <td># Wrong</td>
+      <td><%= current_user.guesses.where(:outcome => false).count %></td>
+      <td><%= Guess.where(:round_id => last_round).where(:outcome => false).count %></td>
+    </tr>
+    <tr>
+      <td>% Right</td>
+      <td><%= current_user.guesses.where(:outcome => true).count/current_user.guesses.count.to_f %></td>
+      <td><%= Guess.where(:round_id => last_round).where(:outcome => true).count/Guess.where(:round_id => last_round).count.to_f %></td>
+    </tr>
+  </table>
+</div>
 
 
 <a class ="link" href="/home">Back to Game Home</a>

@@ -43,3 +43,4 @@ post '/round/:round_id/card/:card_id' do
   #Get another card
   redirect "/round/#{round_id}/new_card"  
 end
+
