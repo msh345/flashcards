@@ -27,7 +27,7 @@ post '/gamehome' do
     end
   else
     #Sign In Case
-    puts @user = User.where(:username => params["username"], :password => params["password"]).first
+    @user = User.where(:username => params["username"], :password => params["password"]).first
     if !@user.nil?
       session[:user_id] = @user.id
       erb :gamehome
