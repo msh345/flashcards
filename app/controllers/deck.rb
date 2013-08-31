@@ -7,6 +7,8 @@ get '/deck/:id' do
 end
 
 get '/round/:round_id/new_card' do
+
+
   #Check against all answers filled in or 5 wrong answers
   if Guess.where(:round_id => params[:round_id]).count == Card.where(:deck_id => Round.find(params[:round_id]).deck_id).count || Guess.where(:round_id => params[:round_id]).where(:outcome => false).count == 5
     redirect "/user/#{Round.find(params[:round_id]).user_id}/stats"
@@ -18,7 +20,6 @@ get '/round/:round_id/new_card' do
       if Guess.where(:round_id => params[:round_id]).where(:card_id => @card).empty?
         redirect "/round/#{params[:round_id]}/card/#{@card}" 
       else
-        puts 'copy'
         @card = Round.find(params[:round_id]).deck.cards.sample.id.to_s
       end
     end
@@ -26,13 +27,22 @@ get '/round/:round_id/new_card' do
 end
 
 get '/round/:round_id/card/:card_id' do
+  #Shows last answer outcome and new card
+  if Guess.last.round_id == params[:round_id].to_i
+    if Guess.last.outcome == true
+      @resp = "Correct"
+    else
+      @resp = "Incorrect - The answer was #{Card.find(Guess.last.card_id).term}"
+    end
+  end
+
   @round = Round.find(params[:round_id])
   @card = Round.find(params[:round_id]).deck.cards.find(params[:card_id])
   erb :game_start
 end
 
 post '/round/:round_id/card/:card_id' do
-  #Create Guess Table Entry
+  #This method Creates Guess Table Entry
   answer = params["answer"].downcase
   round_id = params["round_id"]
   card_id = params["card_id"]

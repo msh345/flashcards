@@ -1,13 +1,14 @@
 <%=@card.definition%>
 <% current_round = current_user.guesses.order("updated_at DESC").first.round_id %>
 
+
 <form action= "/round/<%=@round.id%>/card/<%=@card.id%>" method="POST">
   <label for="answer">Your Answer</label>
   <input id="answer" type="text" name="answer"><br>
   <div id="id" name=<%=@card.id%>></div>
   <input type="Submit">
 </form>
-
+ <p><%= @resp if @resp %></p>
 <div class="user_stat">
   <h1>Stats for <%=current_user.username%></h1>
   <table>
