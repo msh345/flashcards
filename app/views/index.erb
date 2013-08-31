@@ -1,12 +1,18 @@
+
 <h1>Welcome to Flashcards!</h1>
 
 
 <div>
-  <p>[description of the game]</p>
+  <p>Flashcards is a fun game where you are given descriptions and must guess
+    the term. There are different subjects to select from, but you can only have
+    five wrong answers.</p>
+  <% if current_user %>
+    <a href="/logout"> Logout </a>
+  <% else %>
+    <a href="/signin"> Sign In </a><br>
+    <a href="/signup"> Sign Up </a>
+  <% end %>
 
-  <a href="/signin"> Sign In </a><br>
-
-  <a href="/signup"> Sign Up </a>
 
 </div>
 

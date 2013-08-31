@@ -17,3 +17,8 @@ get '/home' do
   @subjects = Deck.all
   erb :gamehome
 end
+
+get '/logout' do
+  sessions[:user_id].destroy
+  redirect '/'
+end

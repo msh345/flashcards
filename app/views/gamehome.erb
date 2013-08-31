@@ -1,20 +1,10 @@
 <div class="subjects">
-<h1> ALL Subjects! </h1>
-<TABLE>
-  <thead>
-    <tr>
-      <th>Subject:</th>
-    </tr>
-  </thead>
-  <tbody class = "post">
-    <% @subjects.each do |item| %>
-      <tr>
-        <td><a href="/deck/<%= item.id%>"><%= item.subject%></a></td>
-      </tr>
-    <% end %>
-  </tbody>
-</TABLE>
-</div>
-<br>
+<h1>Select Subject</h1>
 
-<a class ="userprofilelink" href="/user/<%= current_user.id%>/stats">User Profile</a> 
+<ul id="categ_list">
+  <% @subjects.each do |item| %>
+    <li>
+      <a href="/deck/<%= item.id%>"><%= item.subject%></a>
+    </li>
+  <% end %>
+</ul>

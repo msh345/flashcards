@@ -1,0 +1,10 @@
+<div id="nav">
+  <a href='/'><h2>FLASHCARDS</h2></a>
+  <div id="nav_links">
+    <a href="/">Home</a>
+    <% if current_user %>
+      <a href="/logout"> Logout </a>
+      <a href="/user/<%= current_user.id%>/stats">User Profile</a> 
+    <% end %>
+  </div>
+</div>
